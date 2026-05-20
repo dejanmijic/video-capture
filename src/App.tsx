@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import type { JSX } from 'react'
 
 const App = (): JSX.Element => {
   return (
@@ -9,7 +9,7 @@ const App = (): JSX.Element => {
         </section>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -1,0 +1,14 @@
+main {
+  min-height: 100vh;
+  padding: 10px 20px;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #bdb3b1;
+}

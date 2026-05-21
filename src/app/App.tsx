@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 import './App.css'
+import { Instructions } from '../features/video-capture/components/Instructions/Instructions'
 
 const App = (): JSX.Element => {
   return (
@@ -7,7 +8,7 @@ const App = (): JSX.Element => {
       <main>
         <div className="wrapper">
           <section>
-            <h1>Video capture</h1>
+            <Instructions />
           </section>
         </div>
       </main>

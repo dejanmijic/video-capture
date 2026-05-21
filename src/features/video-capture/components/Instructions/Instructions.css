@@ -1,0 +1,20 @@
+h1 {
+  font-size: 48px;
+}
+
+p {
+  font-size: 24px;
+}
+
+button {
+  width: 96px;
+  height: 48px;
+  margin: 12px 0;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}

@@ -6,7 +6,8 @@ import { CapturedPhoto } from '../features/video-capture/components/CapturedImag
 import { useCameraCapture } from '../features/video-capture/hooks/useCameraCapture'
 
 const App = (): JSX.Element => {
-  const { videoRef, error, isRunning, startCamera } = useCameraCapture()
+  const { videoRef, error, isRunning, startCamera, countdown } =
+    useCameraCapture()
 
   return (
     <>
@@ -18,6 +19,7 @@ const App = (): JSX.Element => {
               videoRef={videoRef}
               isRunning={isRunning}
               error={error}
+              countdown={countdown}
             />
             <CapturedPhoto />
           </section>

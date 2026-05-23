@@ -5,12 +5,14 @@ type VideoPreviewProps = {
   videoRef: React.RefObject<HTMLVideoElement | null>
   error: string
   isRunning: boolean
+  countdown: number
 }
 
 export const VideoPreview = ({
   videoRef,
   error,
   isRunning,
+  countdown,
 }: VideoPreviewProps): JSX.Element => {
   return (
     <div className="wrapper">
@@ -24,7 +26,12 @@ export const VideoPreview = ({
           {!isRunning && (
             <p>Camera preview will appear here after you click Start.</p>
           )}
-          <video ref={videoRef} autoPlay playsInline muted />
+          {countdown > 0 && isRunning && (
+            <p>
+              Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
+            </p>
+          )}
+          {isRunning && <video ref={videoRef} autoPlay playsInline muted />}
         </>
       )}
     </div>

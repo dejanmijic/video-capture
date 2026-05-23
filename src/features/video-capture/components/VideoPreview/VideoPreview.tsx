@@ -14,14 +14,7 @@ export const VideoPreview = (): JSX.Element => {
         <>
           <h2>Live video preview</h2>
 
-          <video
-            id="webcam"
-            autoPlay
-            playsInline
-            muted
-            width="640"
-            height="360"
-          />
+          <video id="webcam" autoPlay playsInline muted />
         </>
       )}
     </div>

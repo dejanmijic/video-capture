@@ -1,0 +1,19 @@
+h2 {
+  font-size: 36px;
+}
+
+canvas {
+  width: 640px;
+  height: 360px;
+  background-color: #ffff;
+}
+
+.photo-placeholder {
+  width: 640px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebe3e1;
+  border: 3px dotted #000;
+}

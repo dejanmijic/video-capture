@@ -3,15 +3,22 @@ import './App.css'
 import { Instructions } from '../features/video-capture/components/Instructions/Instructions'
 import { VideoPreview } from '../features/video-capture/components/VideoPreview/VideoPreview'
 import { CapturedPhoto } from '../features/video-capture/components/CapturedImage/CapturedPhoto'
+import { useCameraCapture } from '../features/video-capture/hooks/useCameraCapture'
 
 const App = (): JSX.Element => {
+  const { videoRef, error, isRunning, startCamera } = useCameraCapture()
+
   return (
     <>
       <main>
         <div className="wrapper">
           <section>
-            <Instructions />
-            <VideoPreview />
+            <Instructions onStart={startCamera} />
+            <VideoPreview
+              videoRef={videoRef}
+              isRunning={isRunning}
+              error={error}
+            />
             <CapturedPhoto />
           </section>
         </div>

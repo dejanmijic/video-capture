@@ -1,9 +1,17 @@
-import { useState, type JSX } from 'react'
+import { type JSX } from 'react'
 import './VideoPreview.css'
 
-export const VideoPreview = (): JSX.Element => {
-  const [error, setError] = useState(false)
+type VideoPreviewProps = {
+  videoRef: React.RefObject<HTMLVideoElement | null>
+  error: string
+  isRunning: boolean
+}
 
+export const VideoPreview = ({
+  videoRef,
+  error,
+  isRunning,
+}: VideoPreviewProps): JSX.Element => {
   return (
     <div className="wrapper">
       {error ? (
@@ -13,8 +21,10 @@ export const VideoPreview = (): JSX.Element => {
       ) : (
         <>
           <h2>Live video preview</h2>
-
-          <video id="webcam" autoPlay playsInline muted />
+          {!isRunning && (
+            <p>Camera preview will appear here after you click Start.</p>
+          )}
+          <video ref={videoRef} autoPlay playsInline muted />
         </>
       )}
     </div>

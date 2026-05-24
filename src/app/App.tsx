@@ -27,6 +27,7 @@ const App = (): JSX.Element => {
               isRunning={isRunning}
               error={error}
               countdown={countdown}
+              hasPhoto={hasPhoto}
             />
             <CapturedPhoto canvasRef={canvasRef} hasPhoto={hasPhoto} />
           </section>

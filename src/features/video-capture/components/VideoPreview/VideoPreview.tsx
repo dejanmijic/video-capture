@@ -6,6 +6,7 @@ type VideoPreviewProps = {
   error: string
   isRunning: boolean
   countdown: number
+  hasPhoto: boolean
 }
 
 export const VideoPreview = ({
@@ -13,17 +14,18 @@ export const VideoPreview = ({
   error,
   isRunning,
   countdown,
+  hasPhoto,
 }: VideoPreviewProps): JSX.Element => {
   return (
     <div className="wrapper">
+      <h2>Live video preview</h2>
       {error ? (
         <div role="alert" className="error-message">
           Camera access was denied. Please allow camera permissions.
         </div>
       ) : (
         <>
-          <h2>Live video preview</h2>
-          {!isRunning && (
+          {!isRunning && !hasPhoto && (
             <p>Camera preview will appear here after you click Start.</p>
           )}
           {countdown > 0 && isRunning && (
@@ -31,7 +33,7 @@ export const VideoPreview = ({
               Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
             </p>
           )}
-          {isRunning && <video ref={videoRef} autoPlay playsInline muted />}
+          <video ref={videoRef} autoPlay playsInline muted />
         </>
       )}
     </div>

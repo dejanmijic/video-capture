@@ -1,15 +1,20 @@
-import { useState, type JSX } from 'react'
+import { type JSX } from 'react'
 import './CapturedPhoto.css'
 
-export const CapturedPhoto = (): JSX.Element => {
-  const [photoTaken, setPhotoTaken] = useState(false)
+type CapturedPhotoProps = {
+  canvasRef: React.RefObject<HTMLCanvasElement | null>
+  hasPhoto: boolean
+}
 
+export const CapturedPhoto = ({
+  canvasRef,
+  hasPhoto,
+}: CapturedPhotoProps): JSX.Element => {
   return (
     <div className="wrapper">
       <h2>Captured photo</h2>
-      {photoTaken ? (
-        <canvas />
-      ) : (
+      <canvas ref={canvasRef} />
+      {!hasPhoto && (
         <div className="photo-placeholder">
           Captured photo will appear here.
         </div>

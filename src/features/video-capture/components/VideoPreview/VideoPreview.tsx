@@ -21,7 +21,9 @@ export const VideoPreview = ({
       <h2 className="video-preview-title">Live video preview</h2>
       <p
         className={`snapshot-message ${
-          countdown === 0 && !isRunning ? 'snapshot-message-hidden' : ''
+          (countdown === 0 && !isRunning) || error
+            ? 'snapshot-message-hidden'
+            : ''
         }`}
       >
         Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...

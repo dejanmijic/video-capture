@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 import './Instructions.css'
+import { Button } from '../../../../components/ui/Button/Button'
 
 type InstructionsProps = {
   onStart: () => void
@@ -13,9 +14,9 @@ export const Instructions = ({ onStart }: InstructionsProps): JSX.Element => {
         Click the button to allow camera access. A photo will be taken
         automatically after a few seconds.
       </p>
-      <button type="button" onClick={onStart}>
+      <Button width={240} height={56} onClick={onStart}>
         Start
-      </button>
+      </Button>
     </div>
   )
 }

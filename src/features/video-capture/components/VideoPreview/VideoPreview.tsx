@@ -19,21 +19,28 @@ export const VideoPreview = ({
   return (
     <div className="wrapper">
       <h2>Live video preview</h2>
+      <p
+        className={
+          countdown === 0 && !isRunning ? 'snapshot-message' : undefined
+        }
+      >
+        Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
+      </p>
       {error ? (
+        // handle errors
         <div role="alert" className="error-message">
           Camera access was denied. Please allow camera permissions.
         </div>
       ) : (
         <>
-          {!isRunning && !hasPhoto && (
-            <p>Camera preview will appear here after you click Start.</p>
-          )}
-          {countdown > 0 && isRunning && (
-            <p>
-              Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
-            </p>
-          )}
-          <video ref={videoRef} autoPlay playsInline muted />
+          <div className="video-container">
+            {(!isRunning || hasPhoto) && (
+              <div className="video-overlay">
+                <p>Camera preview will appear here after you click Start.</p>
+              </div>
+            )}
+            <video ref={videoRef} autoPlay playsInline muted />
+          </div>
         </>
       )}
     </div>

@@ -1,5 +1,6 @@
-h2 {
+.video-preview-title {
   font-size: 36px;
+  margin-bottom: 0;
 }
 
 video {
@@ -38,7 +39,6 @@ video {
 
   color: #ffff;
   font-size: 10px;
-  font-weight: 500;
 
   z-index: 1;
 }
@@ -48,5 +48,9 @@ video {
 }
 
 .snapshot-message {
+  font-size: 20px;
+  padding: 0;
+}
+.snapshot-message-hidden {
   visibility: hidden;
 }

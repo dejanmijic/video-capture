@@ -12,12 +12,14 @@ export const CapturedPhoto = ({
 }: CapturedPhotoProps): JSX.Element => {
   return (
     <div className="wrapper">
-      <h2>Captured photo</h2>
+      <h2 className="captured-photo-title">Captured photo</h2>
       <div className="canvas-container">
         <canvas ref={canvasRef} />
         {!hasPhoto && (
           <div className="photo-placeholder">
-            Captured photo will appear here.
+            <p className="photo-placeholder-message">
+              Captured photo will appear here.
+            </p>
           </div>
         )}
       </div>

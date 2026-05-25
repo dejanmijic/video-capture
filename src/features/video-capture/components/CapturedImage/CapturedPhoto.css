@@ -1,4 +1,4 @@
-h2 {
+.captured-photo-title {
   font-size: 36px;
 }
 
@@ -15,7 +15,6 @@ canvas {
   aspect-ratio: 16 / 9;
 
   overflow: hidden;
-  border-radius: 12px;
   background: #111;
 }
 
@@ -29,11 +28,14 @@ canvas {
 
   padding: 10px;
 
-  background-color: #ffff;
+  background-color: #fdbb30;
   color: #000000;
   border: 3px dotted #000000;
 
-  font-size: 16px;
-
   z-index: 1;
+}
+
+.photo-placeholder-message {
+  font-size: 20px;
+  font-weight: 600px;
 }

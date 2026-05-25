@@ -18,16 +18,16 @@ export const VideoPreview = ({
 }: VideoPreviewProps): JSX.Element => {
   return (
     <div className="wrapper">
-      <h2>Live video preview</h2>
+      <h2 className="video-preview-title">Live video preview</h2>
       <p
-        className={
-          countdown === 0 && !isRunning ? 'snapshot-message' : undefined
-        }
+        className={`snapshot-message ${
+          countdown === 0 && !isRunning ? 'snapshot-message-hidden' : ''
+        }`}
       >
         Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
       </p>
       {error ? (
-        // handle errors
+        // handle errors + semantic <p
         <div role="alert" className="error-message">
           Camera access was denied. Please allow camera permissions.
         </div>

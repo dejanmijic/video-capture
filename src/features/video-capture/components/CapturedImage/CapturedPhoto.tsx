@@ -13,12 +13,14 @@ export const CapturedPhoto = ({
   return (
     <div className="wrapper">
       <h2>Captured photo</h2>
-      <canvas ref={canvasRef} />
-      {!hasPhoto && (
-        <div className="photo-placeholder">
-          Captured photo will appear here.
-        </div>
-      )}
+      <div className="canvas-container">
+        <canvas ref={canvasRef} />
+        {!hasPhoto && (
+          <div className="photo-placeholder">
+            Captured photo will appear here.
+          </div>
+        )}
+      </div>
     </div>
   )
 }

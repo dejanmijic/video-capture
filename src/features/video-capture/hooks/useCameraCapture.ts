@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react'
+import { getCameraErrorMessage } from '../utils/getCameraErrorMessage'
 
 const TIMER_COUNTDOWN = 5 // seconds
 
@@ -88,7 +89,7 @@ export const useCameraCapture = () => {
         capturePhoto()
       }, TIMER_COUNTDOWN * 1000)
     } catch (error: unknown) {
-      setError('Cammera access dennied')
+      setError(getCameraErrorMessage(error))
     }
   }, [capturePhoto, clearTimers, stopCamera])
 

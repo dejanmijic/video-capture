@@ -27,8 +27,8 @@ export const useCameraCapture = () => {
     }
   }, [])
 
-  const stopCamera = useCallback(() => {
-    clearTimers()
+  const cleanupCameraTracksAndVideoRef = useCallback(() => {
+    if (!streamRef || !videoRef) return
 
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop())
@@ -37,10 +37,14 @@ export const useCameraCapture = () => {
     if (videoRef.current) {
       videoRef.current.srcObject = null
     }
+  }, [])
 
+  const stopCamera = useCallback(() => {
+    clearTimers()
+    cleanupCameraTracksAndVideoRef()
     setIsRunning(false)
     setCountdown(0)
-  }, [clearTimers])
+  }, [cleanupCameraTracksAndVideoRef, clearTimers])
 
   const capturePhoto = useCallback(() => {
     const video = videoRef.current
@@ -75,6 +79,7 @@ export const useCameraCapture = () => {
     setCountdown(TIMER_COUNTDOWN)
     setHasPhoto(false)
     clearTimers()
+    cleanupCameraTracksAndVideoRef()
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -101,7 +106,7 @@ export const useCameraCapture = () => {
     } catch (error: unknown) {
       handleErrors(error)
     }
-  }, [capturePhoto, clearTimers, handleErrors])
+  }, [capturePhoto, cleanupCameraTracksAndVideoRef, clearTimers, handleErrors])
 
   return {
     videoRef,
@@ -112,5 +117,6 @@ export const useCameraCapture = () => {
     canvasRef,
     hasPhoto,
     capturePhoto,
+    cleanupCameraTracksAndVideoRef,
   }
 }

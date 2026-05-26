@@ -1,5 +1,6 @@
 import { type JSX } from 'react'
 import './CapturedPhoto.css'
+import { Overlay } from '../../../../components/ui/Overlay/Overlay'
 
 type CapturedPhotoProps = {
   canvasRef: React.RefObject<HTMLCanvasElement | null>
@@ -16,11 +17,13 @@ export const CapturedPhoto = ({
       <div className="canvas-container">
         <canvas ref={canvasRef} />
         {!hasPhoto && (
-          <div className="photo-placeholder">
-            <p className="photo-placeholder-message">
-              Captured photo will appear here.
-            </p>
-          </div>
+          <Overlay
+            backgroundColor="#fdbb30"
+            textColor="#000000"
+            border="3px dotted #000000"
+          >
+            <p>Captured photo will appear here.</p>
+          </Overlay>
         )}
       </div>
     </div>

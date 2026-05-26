@@ -1,5 +1,6 @@
 import { type JSX } from 'react'
 import './VideoPreview.css'
+import { Overlay } from '../../../../components/ui/Overlay/Overlay'
 
 type VideoPreviewProps = {
   videoRef: React.RefObject<HTMLVideoElement | null>
@@ -37,9 +38,9 @@ export const VideoPreview = ({
         <>
           <div className="video-container">
             {(!isRunning || hasPhoto) && (
-              <div className="video-overlay">
+              <Overlay backgroundColor="#0000" textColor="#ffff">
                 <p>Camera preview will appear here after you click Start.</p>
-              </div>
+              </Overlay>
             )}
             <video ref={videoRef} autoPlay playsInline muted />
           </div>

@@ -6,3 +6,18 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
+
+h1 {
+  font-size: 48px;
+}
+
+.flex-column-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}

@@ -4,7 +4,7 @@ import { VideoCaptureFeature } from '../features/video-capture/VideoCaptureFeatu
 
 const App = (): JSX.Element => {
   return (
-    <main className="wrapper">
+    <main className="app-wrapper flex-column-centered">
       <VideoCaptureFeature />
     </main>
   )

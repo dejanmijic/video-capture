@@ -3,13 +3,6 @@
   margin-bottom: 0;
 }
 
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 .video-container {
   position: relative;
   width: 100%;
@@ -18,6 +11,13 @@ video {
   overflow: hidden;
   border-radius: 12px;
   background: #111;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .error-message {

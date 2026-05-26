@@ -13,9 +13,9 @@ export const Instructions = memo(
     const isStartDisabled = isRunning || hasError
 
     return (
-      <section className="wrapper">
+      <section className="flex-column-centered">
         <h1>Video capture</h1>
-        <p>
+        <p className="instructions-description">
           Click the button to allow camera access. A photo will be taken
           automatically after a few seconds.
         </p>

@@ -15,7 +15,7 @@ export const VideoCaptureFeature = (): JSX.Element => {
     hasPhoto,
   } = useCameraCapture()
   return (
-    <section>
+    <section className="video-capture-wrapper flex-column-centered">
       <Instructions
         hasError={Boolean(error)}
         isRunning={isRunning}

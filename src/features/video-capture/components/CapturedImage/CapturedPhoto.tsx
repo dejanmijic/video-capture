@@ -10,7 +10,7 @@ type CapturedPhotoProps = {
 export const CapturedPhoto = memo(
   ({ canvasRef, hasPhoto }: CapturedPhotoProps): JSX.Element => {
     return (
-      <section className="wrapper">
+      <section className="full-width flex-column-centered">
         <h2 className="captured-photo-title">Captured photo</h2>
         <div className="canvas-container">
           <canvas ref={canvasRef} />

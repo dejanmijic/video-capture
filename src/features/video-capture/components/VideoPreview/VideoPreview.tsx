@@ -22,7 +22,7 @@ export const VideoPreview = ({
   const shouldShowOverlay = !isRunning || hasPhoto
 
   return (
-    <section className="wrapper">
+    <section className="full-width flex-column-centered">
       <h2 className="video-preview-title">Live video preview</h2>
       <p
         className={`snapshot-message ${
@@ -42,7 +42,7 @@ export const VideoPreview = ({
               <p>Camera preview will appear here after you click Start.</p>
             </Overlay>
           )}
-          <video ref={videoRef} autoPlay playsInline muted />
+          <video ref={videoRef} className="video" autoPlay playsInline muted />
         </div>
       )}
     </section>

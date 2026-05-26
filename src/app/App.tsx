@@ -16,27 +16,21 @@ const App = (): JSX.Element => {
     hasPhoto,
   } = useCameraCapture()
   return (
-    <>
-      <main>
-        <div className="wrapper">
-          <section>
-            <Instructions
-              error={Boolean(error)}
-              isRunning={isRunning}
-              onStart={startCamera}
-            />
-            <VideoPreview
-              videoRef={videoRef}
-              isRunning={isRunning}
-              error={error}
-              countdown={countdown}
-              hasPhoto={hasPhoto}
-            />
-            <CapturedPhoto canvasRef={canvasRef} hasPhoto={hasPhoto} />
-          </section>
-        </div>
-      </main>
-    </>
+    <main className="wrapper">
+      <Instructions
+        hasError={Boolean(error)}
+        isRunning={isRunning}
+        onStart={startCamera}
+      />
+      <VideoPreview
+        videoRef={videoRef}
+        isRunning={isRunning}
+        error={error}
+        countdown={countdown}
+        hasPhoto={hasPhoto}
+      />
+      <CapturedPhoto canvasRef={canvasRef} hasPhoto={hasPhoto} />
+    </main>
   )
 }
 

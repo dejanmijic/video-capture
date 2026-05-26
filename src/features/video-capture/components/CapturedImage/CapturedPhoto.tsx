@@ -1,21 +1,19 @@
-import { memo, type JSX } from 'react'
+import { memo, type JSX, type RefObject } from 'react'
 import './CapturedPhoto.css'
 import { Overlay } from '../../../../components/ui/Overlay/Overlay'
 
 type CapturedPhotoProps = {
-  canvasRef: React.RefObject<HTMLCanvasElement | null>
+  canvasRef: RefObject<HTMLCanvasElement | null>
   hasPhoto: boolean
 }
 
 export const CapturedPhoto = memo(
   ({ canvasRef, hasPhoto }: CapturedPhotoProps): JSX.Element => {
     return (
-      <div className="wrapper">
+      <section className="wrapper">
         <h2 className="captured-photo-title">Captured photo</h2>
-
         <div className="canvas-container">
           <canvas ref={canvasRef} />
-
           {!hasPhoto && (
             <Overlay
               backgroundColor="#fdbb30"
@@ -26,7 +24,7 @@ export const CapturedPhoto = memo(
             </Overlay>
           )}
         </div>
-      </div>
+      </section>
     )
   }
 )

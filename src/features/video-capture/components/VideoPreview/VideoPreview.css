@@ -10,11 +10,6 @@ video {
   display: block;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 .video-container {
   position: relative;
   width: 100%;
@@ -35,6 +30,6 @@ video {
   font-size: 20px;
   padding: 0;
 }
-.snapshot-message-hidden {
+.snapshot-message--hidden {
   visibility: hidden;
 }

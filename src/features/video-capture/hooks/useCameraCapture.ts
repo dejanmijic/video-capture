@@ -60,12 +60,15 @@ export const useCameraCapture = () => {
     stopCamera()
   }, [stopCamera])
 
-  const handleErrors = (error: unknown) => {
-    clearTimers()
-    setIsRunning(false)
-    setCountdown(0)
-    setError(getCameraErrorMessage(error))
-  }
+  const handleErrors = useCallback(
+    (error: unknown) => {
+      clearTimers()
+      setIsRunning(false)
+      setCountdown(0)
+      setError(getCameraErrorMessage(error))
+    },
+    [clearTimers]
+  )
 
   const startCamera = useCallback(async () => {
     setError('')
@@ -98,7 +101,7 @@ export const useCameraCapture = () => {
     } catch (error: unknown) {
       handleErrors(error)
     }
-  }, [capturePhoto, clearTimers])
+  }, [capturePhoto, clearTimers, handleErrors])
 
   return {
     videoRef,

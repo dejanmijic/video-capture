@@ -3,6 +3,7 @@ import { useCameraCapture } from './hooks/useCameraCapture'
 import { Instructions } from './components/Instructions/Instructions'
 import { VideoPreview } from './components/VideoPreview/VideoPreview'
 import { CapturedPhoto } from './components/CapturedImage/CapturedPhoto'
+import { ErrorMessage } from '../../components/ui/ErrorMessage/ErrorMessage'
 
 export const VideoCaptureFeature = (): JSX.Element => {
   const {
@@ -14,20 +15,25 @@ export const VideoCaptureFeature = (): JSX.Element => {
     countdown,
     hasPhoto,
   } = useCameraCapture()
+  const hasError = Boolean(error)
   return (
     <section className="video-capture-wrapper flex-column-centered">
       <Instructions
-        hasError={Boolean(error)}
+        hasError={hasError}
         isRunning={isRunning}
         onStart={startCamera}
       />
-      <VideoPreview
-        videoRef={videoRef}
-        isRunning={isRunning}
-        error={error}
-        countdown={countdown}
-        hasPhoto={hasPhoto}
-      />
+      {hasError ? (
+        <ErrorMessage>{error}</ErrorMessage>
+      ) : (
+        <VideoPreview
+          videoRef={videoRef}
+          isRunning={isRunning}
+          error={error}
+          countdown={countdown}
+          hasPhoto={hasPhoto}
+        />
+      )}
       <CapturedPhoto canvasRef={canvasRef} hasPhoto={hasPhoto} />
     </section>
   )

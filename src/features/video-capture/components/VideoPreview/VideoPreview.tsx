@@ -17,7 +17,6 @@ export const VideoPreview = ({
   countdown,
   hasPhoto,
 }: VideoPreviewProps): JSX.Element => {
-  const hasError = Boolean(error)
   const shouldHideCountdown = (countdown === 0 && !isRunning) || error
   const shouldShowOverlay = !isRunning || hasPhoto
 
@@ -31,20 +30,14 @@ export const VideoPreview = ({
       >
         Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
       </p>
-      {hasError ? (
-        <div role="alert" className="error-message">
-          <p>{error}</p>
-        </div>
-      ) : (
-        <div className="video-container">
-          {shouldShowOverlay && (
-            <Overlay backgroundColor="#0000" textColor="#ffff">
-              <p>Camera preview will appear here after you click Start.</p>
-            </Overlay>
-          )}
-          <video ref={videoRef} className="video" autoPlay playsInline muted />
-        </div>
-      )}
+      <div className="video-container">
+        {shouldShowOverlay && (
+          <Overlay backgroundColor="#0000" textColor="#ffff">
+            <p>Camera preview will appear here after you click Start.</p>
+          </Overlay>
+        )}
+        <video ref={videoRef} className="video" autoPlay playsInline muted />
+      </div>
     </section>
   )
 }

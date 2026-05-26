@@ -15,13 +15,16 @@ const App = (): JSX.Element => {
     countdown,
     hasPhoto,
   } = useCameraCapture()
-
   return (
     <>
       <main>
         <div className="wrapper">
           <section>
-            <Instructions onStart={startCamera} />
+            <Instructions
+              error={Boolean(error)}
+              isRunning={isRunning}
+              onStart={startCamera}
+            />
             <VideoPreview
               videoRef={videoRef}
               isRunning={isRunning}

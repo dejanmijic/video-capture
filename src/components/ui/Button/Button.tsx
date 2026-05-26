@@ -4,6 +4,8 @@ import './Button.css'
 type ButtonProps = {
   width: number
   height: number
+  disabled?: boolean
+  background?: string
   onClick: () => void
   children: ReactNode
 }
@@ -11,6 +13,8 @@ type ButtonProps = {
 export const Button = ({
   width,
   height,
+  disabled,
+  background,
   onClick,
   children,
 }: ButtonProps): JSX.Element => {
@@ -18,9 +22,11 @@ export const Button = ({
     <button
       type="button"
       className="button"
+      disabled={disabled ?? false}
       style={{
         width: `${width}px`,
         height: `${height}px`,
+        background: background ?? '#fdbb30',
       }}
       onClick={onClick}
     >

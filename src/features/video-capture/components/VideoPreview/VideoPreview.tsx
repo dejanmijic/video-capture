@@ -32,7 +32,7 @@ export const VideoPreview = ({
       {error ? (
         // handle errors + semantic <p
         <div role="alert" className="error-message">
-          {error}
+          <p>{error}</p>
         </div>
       ) : (
         <>

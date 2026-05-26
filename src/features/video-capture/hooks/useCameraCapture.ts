@@ -1,14 +1,15 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { getCameraErrorMessage } from '../utils/getCameraErrorMessage'
 
-const TIMER_COUNTDOWN = 5 // seconds
+const TIMER_COUNTDOWN = 5
 
 export const useCameraCapture = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const streamRef = useRef<MediaStream | null>(null)
-  const intervalRef = useRef<number | null>(null)
-  const timerRef = useRef<number | null>(null)
+
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const [error, setError] = useState<string>('')
   const [isRunning, setIsRunning] = useState<boolean>(false)
@@ -16,9 +17,9 @@ export const useCameraCapture = () => {
   const [hasPhoto, setHasPhoto] = useState<boolean>(false)
 
   const clearTimers = useCallback(() => {
-    if (timerRef.current !== null) {
-      clearTimeout(timerRef.current)
-      timerRef.current = null
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
 
     if (intervalRef.current !== null) {
@@ -28,12 +29,9 @@ export const useCameraCapture = () => {
   }, [])
 
   const cleanupCameraTracksAndVideoRef = useCallback(() => {
-    if (!streamRef || !videoRef) return
+    streamRef.current?.getTracks().forEach((track) => track.stop())
+    streamRef.current = null
 
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop())
-      streamRef.current = null
-    }
     if (videoRef.current) {
       videoRef.current.srcObject = null
     }
@@ -44,7 +42,7 @@ export const useCameraCapture = () => {
     cleanupCameraTracksAndVideoRef()
     setIsRunning(false)
     setCountdown(0)
-  }, [cleanupCameraTracksAndVideoRef, clearTimers])
+  }, [clearTimers, cleanupCameraTracksAndVideoRef])
 
   const capturePhoto = useCallback(() => {
     const video = videoRef.current
@@ -64,16 +62,6 @@ export const useCameraCapture = () => {
     stopCamera()
   }, [stopCamera])
 
-  const handleErrors = useCallback(
-    (error: unknown) => {
-      clearTimers()
-      setIsRunning(false)
-      setCountdown(0)
-      setError(getCameraErrorMessage(error))
-    },
-    [clearTimers]
-  )
-
   const startCamera = useCallback(async () => {
     setError('')
     setCountdown(TIMER_COUNTDOWN)
@@ -86,6 +74,7 @@ export const useCameraCapture = () => {
         video: true,
         audio: false,
       })
+
       streamRef.current = stream
 
       if (videoRef.current) {
@@ -96,27 +85,41 @@ export const useCameraCapture = () => {
       setIsRunning(true)
 
       let secondsLeft = TIMER_COUNTDOWN
+
       intervalRef.current = setInterval(() => {
         secondsLeft -= 1
-        setCountdown(secondsLeft)
+        setCountdown(Math.max(secondsLeft, 0))
       }, 1000)
-      timerRef.current = setTimeout(() => {
+
+      timeoutRef.current = setTimeout(() => {
         capturePhoto()
       }, TIMER_COUNTDOWN * 1000)
     } catch (error: unknown) {
-      handleErrors(error)
+      clearTimers()
+      cleanupCameraTracksAndVideoRef()
+      setIsRunning(false)
+      setCountdown(0)
+      setError(getCameraErrorMessage(error))
     }
-  }, [capturePhoto, cleanupCameraTracksAndVideoRef, clearTimers, handleErrors])
+  }, [capturePhoto, clearTimers, cleanupCameraTracksAndVideoRef])
+
+  // cleanup camera on unmount
+  useEffect(() => {
+    return () => {
+      clearTimers()
+      cleanupCameraTracksAndVideoRef()
+    }
+  }, [clearTimers, cleanupCameraTracksAndVideoRef])
 
   return {
     videoRef,
+    canvasRef,
     error,
     isRunning,
-    startCamera,
     countdown,
-    canvasRef,
     hasPhoto,
+    startCamera,
+    stopCamera,
     capturePhoto,
-    cleanupCameraTracksAndVideoRef,
   }
 }

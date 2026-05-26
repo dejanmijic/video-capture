@@ -1,4 +1,4 @@
-import { useEffect, type JSX } from 'react'
+import { type JSX } from 'react'
 import './VideoPreview.css'
 import { Overlay } from '../../../../components/ui/Overlay/Overlay'
 
@@ -8,7 +8,6 @@ type VideoPreviewProps = {
   isRunning: boolean
   countdown: number
   hasPhoto: boolean
-  cleanupCameraTracksAndVideoRef: () => void
 }
 
 export const VideoPreview = ({
@@ -17,15 +16,7 @@ export const VideoPreview = ({
   isRunning,
   countdown,
   hasPhoto,
-  cleanupCameraTracksAndVideoRef,
 }: VideoPreviewProps): JSX.Element => {
-  // cleanup camera tracks on component unmount
-  useEffect(() => {
-    return () => {
-      cleanupCameraTracksAndVideoRef()
-    }
-  }, [cleanupCameraTracksAndVideoRef])
-
   return (
     <div className="wrapper">
       <h2 className="video-preview-title">Live video preview</h2>

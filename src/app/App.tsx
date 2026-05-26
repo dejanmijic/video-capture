@@ -14,7 +14,6 @@ const App = (): JSX.Element => {
     canvasRef,
     countdown,
     hasPhoto,
-    cleanupCameraTracksAndVideoRef,
   } = useCameraCapture()
   return (
     <>
@@ -32,7 +31,6 @@ const App = (): JSX.Element => {
               error={error}
               countdown={countdown}
               hasPhoto={hasPhoto}
-              cleanupCameraTracksAndVideoRef={cleanupCameraTracksAndVideoRef}
             />
             <CapturedPhoto canvasRef={canvasRef} hasPhoto={hasPhoto} />
           </section>

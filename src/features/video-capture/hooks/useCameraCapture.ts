@@ -56,6 +56,7 @@ export const useCameraCapture = () => {
     const context = canvas.getContext('2d')
     if (!context) return
 
+    // Draw current video frame onto canvas to create image snapshot
     context.drawImage(video, 0, 0, canvas.width, canvas.height)
 
     setHasPhoto(true)
@@ -64,12 +65,20 @@ export const useCameraCapture = () => {
 
   const startCamera = useCallback(async () => {
     setError('')
+
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setError('Camera access is not supported in this browser.')
+      setCountdown(0)
+      return
+    }
+
     setCountdown(TIMER_COUNTDOWN)
     setHasPhoto(false)
     clearTimers()
     cleanupCameraTracksAndVideoRef()
 
     try {
+      // Camera access requires secure context (HTTPS or localhost)
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: false,
@@ -86,24 +95,22 @@ export const useCameraCapture = () => {
 
       let secondsLeft = TIMER_COUNTDOWN
 
+      // Interval updates the visible countdown
       intervalRef.current = setInterval(() => {
         secondsLeft -= 1
         setCountdown(Math.max(secondsLeft, 0))
       }, 1000)
-
+      // Timeout triggers the actual photo capture
       timeoutRef.current = setTimeout(() => {
         capturePhoto()
       }, TIMER_COUNTDOWN * 1000)
     } catch (error: unknown) {
-      clearTimers()
-      cleanupCameraTracksAndVideoRef()
-      setIsRunning(false)
-      setCountdown(0)
+      stopCamera()
       setError(getCameraErrorMessage(error))
     }
-  }, [capturePhoto, clearTimers, cleanupCameraTracksAndVideoRef])
+  }, [clearTimers, cleanupCameraTracksAndVideoRef, capturePhoto, stopCamera])
 
-  // cleanup camera on unmount
+  // Cleanup camera on unmount
   useEffect(() => {
     return () => {
       clearTimers()

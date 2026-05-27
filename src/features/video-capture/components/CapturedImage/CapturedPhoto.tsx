@@ -13,7 +13,7 @@ export const CapturedPhoto = memo(
       <section className="full-width flex-column-centered">
         <h2 className="captured-photo-title">Captured photo</h2>
         <div className="canvas-container">
-          <canvas ref={canvasRef} />
+          <canvas ref={canvasRef} className="canvas" />
           {!hasPhoto && (
             <Overlay
               backgroundColor="#fdbb30"

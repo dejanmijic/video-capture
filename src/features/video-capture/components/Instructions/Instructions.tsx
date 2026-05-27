@@ -20,8 +20,8 @@ export const Instructions = memo(
           automatically after a few seconds.
         </p>
         <Button
-          width={240}
-          height={56}
+          width={168}
+          height={48}
           disabled={isStartDisabled}
           onClick={onStart}
         >

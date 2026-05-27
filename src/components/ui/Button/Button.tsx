@@ -21,13 +21,15 @@ export const Button = ({
   return (
     <button
       type="button"
-      className="button"
+      className="button button--responsive"
       disabled={disabled ?? false}
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-        background: background ?? '#fdbb30',
-      }}
+      style={
+        {
+          '--btn-width': `${width}px`,
+          '--btn-height': `${height}px`,
+          background: background ?? '#fdbb30',
+        } as React.CSSProperties
+      }
       onClick={onClick}
     >
       {children}

@@ -1,15 +1,11 @@
 .overlay {
   position: absolute;
   inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 1;
 
   padding: 10px;
 
-  color: #ffff;
   font-size: 20px;
-
-  z-index: 1;
+  text-align: center;
+  color: #fff;
 }

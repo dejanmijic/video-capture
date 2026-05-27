@@ -8,7 +8,16 @@ body {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 36px;
+}
+
+h2 {
+  margin: 40px 0 5px;
+  font-size: 30px;
+}
+
+p {
+  font-size: 16px;
 }
 
 .flex-column-centered {
@@ -20,4 +29,19 @@ h1 {
 
 .full-width {
   width: 100%;
+}
+
+/* Tablet/Desktop */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 56px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 24px;
+  }
 }

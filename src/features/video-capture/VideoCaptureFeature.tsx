@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import './VideoCaptureFeature.css'
 import { useCameraCapture } from './hooks/useCameraCapture'
 import { Instructions } from './components/Instructions/Instructions'
 import { VideoPreview } from './components/VideoPreview/VideoPreview'

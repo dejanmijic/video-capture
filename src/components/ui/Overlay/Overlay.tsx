@@ -16,7 +16,7 @@ export const Overlay = ({
 }: OverlayProps): JSX.Element => {
   return (
     <div
-      className="overlay"
+      className="overlay flex-column-centered"
       style={{
         background: `${backgroundColor}`,
         color: `${textColor}`,

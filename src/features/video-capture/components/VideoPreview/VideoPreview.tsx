@@ -22,13 +22,14 @@ export const VideoPreview = ({
 
   return (
     <section className="full-width flex-column-centered">
-      <h2 className="video-preview-title">Live video preview</h2>
+      <h2>Live video preview</h2>
       <p
         className={`snapshot-message ${
           shouldHideCountdown ? 'snapshot-message--hidden' : ''
         }`}
       >
-        Snapshot in {countdown} second{countdown === 1 ? '' : 's'}...
+        Snapshot in <span className="countdown">{countdown}</span> second
+        {countdown === 1 ? '' : 's'}...
       </p>
       <div className="video-container">
         {shouldShowOverlay && (

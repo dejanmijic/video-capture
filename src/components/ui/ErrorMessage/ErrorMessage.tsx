@@ -7,8 +7,8 @@ type ErrorMessageProps = {
 
 export const ErrorMessage = ({ children }: ErrorMessageProps): JSX.Element => {
   return (
-    <p role="alert" className="error-message">
+    <div role="alert" className="error-message">
       <p>{children}</p>
-    </p>
+    </div>
   )
 }

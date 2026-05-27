@@ -13,7 +13,10 @@ export const Instructions = memo(
     const isStartDisabled = isRunning || hasError
 
     return (
-      <section className="flex-column-centered">
+      <section
+        className="flex-column-centered"
+        aria-labelledby="instructions-title"
+      >
         <h1>Video capture</h1>
         <p className="instructions-description">
           Click the button to allow camera access. A photo will be taken

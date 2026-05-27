@@ -10,10 +10,18 @@ type CapturedPhotoProps = {
 export const CapturedPhoto = memo(
   ({ canvasRef, hasPhoto }: CapturedPhotoProps): JSX.Element => {
     return (
-      <section className="full-width flex-column-centered">
+      <section
+        className="full-width flex-column-centered"
+        aria-labelledby="captured-photo-title"
+      >
         <h2 className="captured-photo-title">Captured photo</h2>
         <div className="canvas-container">
-          <canvas ref={canvasRef} className="canvas" />
+          <canvas
+            ref={canvasRef}
+            className="canvas"
+            aria-label="Captured camera photo"
+            role="img"
+          />
           {!hasPhoto && (
             <Overlay
               backgroundColor="#fdbb30"

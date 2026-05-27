@@ -21,12 +21,16 @@ export const VideoPreview = ({
   const shouldShowOverlay = !isRunning || hasPhoto
 
   return (
-    <section className="full-width flex-column-centered">
+    <section
+      className="full-width flex-column-centered"
+      aria-labelledby="video-preview-title"
+    >
       <h2>Live video preview</h2>
       <p
         className={`snapshot-message ${
           shouldHideCountdown ? 'snapshot-message--hidden' : ''
         }`}
+        aria-live="polite"
       >
         Snapshot in <span className="countdown">{countdown}</span> second
         {countdown === 1 ? '' : 's'}...

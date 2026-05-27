@@ -35,13 +35,19 @@ export const VideoPreview = ({
         Snapshot in <span className="countdown">{countdown}</span> second
         {countdown === 1 ? '' : 's'}...
       </p>
-      <div className="video-container">
+      <div className="media-frame-wrapper video-wrapper">
         {shouldShowOverlay && (
           <Overlay backgroundColor="#0000" textColor="#ffff">
             <p>Camera preview will appear here after you click Start.</p>
           </Overlay>
         )}
-        <video ref={videoRef} className="video" autoPlay playsInline muted />
+        <video
+          ref={videoRef}
+          className="media-frame"
+          autoPlay
+          playsInline
+          muted
+        />
       </div>
     </section>
   )

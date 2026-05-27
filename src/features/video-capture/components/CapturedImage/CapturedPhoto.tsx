@@ -15,10 +15,10 @@ export const CapturedPhoto = memo(
         aria-labelledby="captured-photo-title"
       >
         <h2 className="captured-photo-title">Captured photo</h2>
-        <div className="canvas-container">
+        <div className="media-frame-wrapper canvas-wrapper">
           <canvas
             ref={canvasRef}
-            className="canvas"
+            className="media-frame"
             aria-label="Captured camera photo"
             role="img"
           />

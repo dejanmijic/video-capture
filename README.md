@@ -2,6 +2,13 @@
 
 A React + TypeScript application that captures a photo from the user's camera after a countdown using the MediaDevices API (`getUserMedia`).
 
+## Demo
+
+Demo video:
+[Google Drive Demo Link](https://drive.google.com/file/d/1amy2kLPjOPC2tFPQgZBBb5wX7WprN-3P/view)
+
+---
+
 ## Overview
 
 The application provides:

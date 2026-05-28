@@ -1,5 +1,3 @@
-// src/features/video-capture/utils/getCameraErrorMessage.test.ts
-
 import { describe, expect, it } from 'vitest'
 import { getCameraErrorMessage } from './getCameraErrorMessage'
 

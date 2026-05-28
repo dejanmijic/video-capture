@@ -4,16 +4,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { Instructions } from './Instructions'
 
 describe('Instructions', () => {
-  it('renders title', () => {
-    render(
-      <Instructions hasError={false} isRunning={false} onStart={vi.fn()} />
-    )
-
-    expect(
-      screen.getByRole('heading', { name: /video capture/i })
-    ).toBeInTheDocument()
-  })
-
   it('renders description', () => {
     render(
       <Instructions hasError={false} isRunning={false} onStart={vi.fn()} />

@@ -19,6 +19,7 @@ export const VideoCaptureFeature = (): JSX.Element => {
   const hasError = Boolean(error)
   return (
     <section className="video-capture-wrapper flex-column-centered">
+      <h1>Video capture</h1>
       <Instructions
         hasError={hasError}
         isRunning={isRunning}

@@ -17,7 +17,6 @@ export const Instructions = memo(
         className="flex-column-centered"
         aria-labelledby="instructions-title"
       >
-        <h1>Video capture</h1>
         <p className="instructions-description">
           Click the button to allow camera access. A photo will be taken
           automatically after a few seconds.
